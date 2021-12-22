@@ -80,12 +80,10 @@ const App: React.FC = () => {
       <ResetCSS />
       <GlobalStyle />
       <GlobalCheckClaimStatus excludeLocations={[]} />
-      <Menu>
+      
         <SuspenseWithChunkError fallback={<PageLoader />}>
           <Switch>
-            <Route path="/" exact>
-              <Home />
-            </Route>
+            
             <Route exact path="/farms/auction">
               <FarmAuction />
             </Route>
@@ -160,6 +158,9 @@ const App: React.FC = () => {
             <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
 
             {/* Redirect */}
+            <Route path="/">
+              <Redirect to="/swap" />
+            </Route>
             <Route path="/pool">
               <Redirect to="/liquidity" />
             </Route>
@@ -180,7 +181,7 @@ const App: React.FC = () => {
             <Route component={NotFound} />
           </Switch>
         </SuspenseWithChunkError>
-      </Menu>
+      
       <EasterEgg iterations={2} />
       <ToastListener />
       <DatePickerPortal />
